@@ -14,6 +14,7 @@ service iptables save
 iptables -P INPUT DROP
 iptables -A INPUT -m conntrack --ctstate INVALID -j DROP
 iptables -A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+iptables -A INPUT -i lo -j ACCEPT
 
 service iptables save
 service iptables start
@@ -27,6 +28,7 @@ service ip6tables save
 ip6tables -P INPUT DROP
 ip6tables -A INPUT -m conntrack --ctstate INVALID -j DROP
 ip6tables -A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+ip6tables -A INPUT -i lo -j ACCEPT
 
 service ip6tables save
 service ip6tables start
